@@ -1,0 +1,8 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = 'pocPermBus'
+include ':permbus-api', ':permbus-ui', ':appa', ':launcher'
