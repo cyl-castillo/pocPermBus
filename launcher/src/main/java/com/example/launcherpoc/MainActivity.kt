@@ -57,10 +57,10 @@ fun PermissionList(portals: List<IPermissionPortal>) {
     }
 
     Column {
+        val context = LocalContext.current
         list.forEach { info ->
             Text(text = info.uiLabel)
             Button(onClick = {
-                val context = LocalContext.current
                 val intent = Intent.parseUri(info.fixIntentUri, 0)
                 context.startActivity(intent)
             }) {
