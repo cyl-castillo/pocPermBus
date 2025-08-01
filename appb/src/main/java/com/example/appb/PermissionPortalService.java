@@ -1,10 +1,9 @@
-package com.example.appa;
+package com.example.appb;
 
 import android.app.Service;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.pm.PackageInfo;
-import android.os.Binder;
+import android.content.pm.PackageManager;
 import android.os.IBinder;
 
 import com.example.permbus.IPermissionPortal;
@@ -32,7 +31,7 @@ public class PermissionPortalService extends Service {
                     }
                 }
             } catch (PackageManager.NameNotFoundException e) {
-                // should not happen
+                // shouldn't happen
             }
             return list;
         }

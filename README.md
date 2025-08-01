@@ -1,9 +1,10 @@
 # pocPermBus
 
-Este proyecto es una prueba de concepto de un _permission bus_ para Android. Consta de dos aplicaciones:
+Este proyecto es una prueba de concepto de un _permission bus_ para Android. Consta de varias aplicaciones:
 
- - **appa**: expone un servicio que informa los permisos pendientes y permite lanzar la actividad para concederlos. Ahora incluye una actividad principal sencilla para iniciar la app directamente.
-- **launcher**: cliente que se conecta al servicio de `appa` y ofrece una interfaz simple para solicitar los permisos desde otra app.
+  - **appa**: expone un servicio que inspecciona su manifiesto para detectar los permisos solicitados y, si alguno falta, permite lanzar la actividad para concederlo. Incluye una actividad principal sencilla para iniciar la app directamente.
+  - **appb**: segunda aplicación de ejemplo con un servicio equivalente.
+  - **launcher**: cliente que se conecta a los servicios y ofrece una interfaz simple para solicitar los permisos desde otra app.
 
 ## Pasos para probar
 
@@ -12,6 +13,7 @@ Este proyecto es una prueba de concepto de un _permission bus_ para Android. Con
 3. Compila e instala cada módulo en un dispositivo o emulador conectado:
    ```
    gradle :appa:installDebug
+   gradle :appb:installDebug
    gradle :launcher:installDebug
    ```
 4. Ejecuta la aplicación **LauncherPoC** en el dispositivo. Detectará los permisos que faltan en **appa** y mostrará un botón para corregirlos.
