@@ -18,34 +18,42 @@ import androidx.compose.ui.platform.LocalContext
 import com.example.permbus.PermInfo
 
 class MainActivity : ComponentActivity() {
-    private var portal: IPermissionPortal? = null
-
-    private val connection = object : ServiceConnection {
-        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-            portal = IPermissionPortal.Stub.asInterface(service)
-        }
-        override fun onServiceDisconnected(name: ComponentName?) {
-            portal = null
-        }
-    }
+    private val portals = mutableStateListOf<IPermissionPortal>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val intent = Intent("com.example.permbus.BIND_PERMISSION_PORTAL")
-        intent.`package` = "com.example.appa"
-        bindService(intent, connection, Context.BIND_AUTO_CREATE)
+        bindPortal("com.example.appa")
+        bindPortal("com.example.appb")
 
         setContent {
-            PermissionList(portal)
+            PermissionList(portals)
         }
+    }
+
+    private fun bindPortal(pkg: String) {
+        val intent = Intent("com.example.permbus.BIND_PERMISSION_PORTAL")
+        intent.`package` = pkg
+        val connection = object : ServiceConnection {
+            override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+                IPermissionPortal.Stub.asInterface(service)?.let { portals += it }
+            }
+            override fun onServiceDisconnected(name: ComponentName?) {
+                // ignored for this sample
+            }
+        }
+        bindService(intent, connection, Context.BIND_AUTO_CREATE)
     }
 }
 
 @Composable
-fun PermissionList(portal: IPermissionPortal?) {
+fun PermissionList(portals: List<IPermissionPortal>) {
     var list by remember { mutableStateOf<List<PermInfo>>(emptyList()) }
-    LaunchedEffect(portal) {
-        list = portal?.pendingPermissions ?: emptyList()
+    LaunchedEffect(portals) {
+        val all = mutableListOf<PermInfo>()
+        portals.forEach { portal ->
+            all += portal.pendingPermissions
+        }
+        list = all
     }
 
     Column {
