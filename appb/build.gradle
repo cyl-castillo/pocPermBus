@@ -16,7 +16,6 @@ android {
 }
 
 dependencies {
-    implementation project(':permbus-api')
-    implementation project(':permbus-ui')
+    implementation 'com.example:permbus-ui:1.0'
     implementation 'androidx.core:core:1.12.0'
 }
