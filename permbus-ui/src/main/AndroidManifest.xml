@@ -1,1 +1,15 @@
-<manifest package="com.example.permbus.ui"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.permbus">
+
+    <application>
+        <activity android:name=".ui.PermissionFixActivity"
+                  android:exported="false"/>
+
+        <service android:name=".PermissionPortalService"
+                 android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.permbus.BIND_PERMISSION_PORTAL"/>
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

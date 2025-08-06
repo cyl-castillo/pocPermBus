@@ -11,14 +11,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.permbus.ui.PermissionFixActivity"
-            android:exported="false" />
-
-        <service android:name=".PermissionPortalService"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.example.permbus.BIND_PERMISSION_PORTAL" />
-            </intent-filter>
-        </service>
     </application>
 </manifest>
