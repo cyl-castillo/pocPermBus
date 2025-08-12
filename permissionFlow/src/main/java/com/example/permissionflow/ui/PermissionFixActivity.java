@@ -1,4 +1,4 @@
-package com.example.permbus.ui;
+package com.example.permissionflow.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
