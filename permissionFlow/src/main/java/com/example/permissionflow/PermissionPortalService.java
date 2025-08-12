@@ -1,20 +1,21 @@
-package com.example.permbus;
+package com.example.permissionflow;
 
 import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageInfo;
-import android.os.Binder;
 import android.os.IBinder;
 
-import com.example.permbus.IPermissionPortal;
-import com.example.permbus.PermInfo;
-import com.example.permbus.ui.PermissionFixActivity;
+import com.example.permissionflow.IPermissionPortal;
+import com.example.permissionflow.PermInfo;
+import com.example.permissionflow.ui.PermissionFixActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PermissionPortalService extends Service {
+    public static final String BIND_PERMISSION_PORTAL = "com.example.permissionflow.BIND_PERMISSION_PORTAL";
+
     private final IPermissionPortal.Stub binder = new IPermissionPortal.Stub() {
         @Override
         public List<PermInfo> getPendingPermissions() {

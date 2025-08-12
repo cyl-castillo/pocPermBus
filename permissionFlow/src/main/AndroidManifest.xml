@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.permbus">
+    package="com.example.permissionflow">
 
     <application>
         <activity android:name=".ui.PermissionFixActivity"
@@ -8,7 +8,7 @@
         <service android:name=".PermissionPortalService"
                  android:exported="true">
             <intent-filter>
-                <action android:name="com.example.permbus.BIND_PERMISSION_PORTAL"/>
+                <action android:name="com.example.permissionflow.BIND_PERMISSION_PORTAL"/>
             </intent-filter>
         </service>
     </application>

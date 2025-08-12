@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 rootProject.name = 'pocPermBus'
-include ':permbus-api', ':permbus-ui', ':appa', ':appb', ':launcher'
+include ':permissionFlow', ':appa', ':appb', ':launcher'
