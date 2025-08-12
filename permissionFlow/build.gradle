@@ -23,13 +23,46 @@ dependencies {
 publishing {
     publications {
         release(MavenPublication) {
-            groupId = 'com.example'
+            groupId = 'com.mycompany'
             artifactId = 'permission-flow'
-            version = '1.0'
+            version = project.findProperty("permissionFlowVersion")
+
+            pom {
+                description = "Android permission flow library"
+                licenses {
+                    license {
+                        name = "Apache-2.0"
+                        url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "team"
+                        name = "Development Team"
+                        email = "devs@mycompany.com"
+                    }
+                }
+            }
         }
     }
     repositories {
         mavenLocal()
+        maven {
+            name = "Internal"
+            url = uri("https://maven.mycompany.com/" + (version.endsWith("SNAPSHOT") ? "snapshots" : "releases"))
+            credentials {
+                username = findProperty("internalMavenUser") ?: System.getenv("INTERNAL_MAVEN_USER")
+                password = findProperty("internalMavenPassword") ?: System.getenv("INTERNAL_MAVEN_PASSWORD")
+            }
+        }
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/my-org/pocPermBus")
+            credentials {
+                username = findProperty("githubUser") ?: System.getenv("GITHUB_ACTOR")
+                password = findProperty("githubToken") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }
 
