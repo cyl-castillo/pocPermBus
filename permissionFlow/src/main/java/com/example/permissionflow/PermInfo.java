@@ -1,4 +1,4 @@
-package com.example.permbus;
+package com.example.permissionflow;
 
 import android.os.Parcel;
 import android.os.Parcelable;

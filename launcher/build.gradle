@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-    implementation project(':permbus-api')
+    implementation project(':permissionFlow')
     implementation 'androidx.core:core:1.12.0'
     implementation platform('androidx.compose:compose-bom:2024.05.00')
     implementation 'androidx.compose.ui:ui'

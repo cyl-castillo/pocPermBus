@@ -16,6 +16,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.example:permbus-ui:1.0'
+    implementation project(':permissionFlow')
     implementation 'androidx.core:core:1.12.0'
 }

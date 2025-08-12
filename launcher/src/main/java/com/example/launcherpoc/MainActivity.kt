@@ -13,9 +13,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import com.example.permbus.IPermissionPortal
+import com.example.permissionflow.IPermissionPortal
 import androidx.compose.ui.platform.LocalContext
-import com.example.permbus.PermInfo
+import com.example.permissionflow.PermInfo
+import com.example.permissionflow.PermissionPortalService
 
 class MainActivity : ComponentActivity() {
     private val portals = mutableStateListOf<IPermissionPortal>()
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun bindPortal(pkg: String) {
-        val intent = Intent("com.example.permbus.BIND_PERMISSION_PORTAL")
+        val intent = Intent(PermissionPortalService.BIND_PERMISSION_PORTAL)
         intent.`package` = pkg
         val connection = object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
